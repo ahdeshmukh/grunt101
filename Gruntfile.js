@@ -15,3 +15,11 @@ grunt.registerTask('hello-name', 'say hello to name passed through command line'
 	
 	console.log('Hello ' + name);
 });
+
+grunt.registerTask('hello-multiple-names', 'multiple args example. pass as arg1:arg2', function(name1, name2){
+	if(!name1 || !name1.length || !name2 || !name2.length) {
+		grunt.warn('Both the names are required');
+	}
+	
+	console.log('Hello ' + name1 + ' and ' + name2);
+});
