@@ -1,12 +1,25 @@
+/*
+one custom task invokes multiple other custom tasks. one of those multiple task accepts argument
+*/
+
 var grunt = require('grunt');
 
-//ex: grunt hello-multiple-names:Amit:Jaya
-grunt.registerTask('hello-multiple-names', 'multiple args example. invoke task as hello-multiple-names:arg1:arg2', 
+//ex: grunt custom-invokes-multiple
+grunt.registerTask('custom-invokes-multiple', 'Custom task which invokes multiple other tasks', 
+					['multiple-task1', 'multiple-task2', 'multiple-task3:Amit']
+				);
 
-function(name1, name2){
-	if(!name1 || !name1.length || !name2 || !name2.length) {
-		grunt.warn('Both the names are required');
+grunt.registerTask('multiple-task1', 'Multiple task 1', function(){
+	console.log('Running multipe task 1');
+});
+
+grunt.registerTask('multiple-task2', 'Multiple task 2', function(){
+	console.log('Running multipe task 2');
+});
+
+grunt.registerTask('multiple-task3', 'Multiple task 3', function(name){
+	if(!name || !name.length) {
+		grunt.warn('You need to provide a name');
 	}
-	
-	console.log('Hello ' + name1 + ' and ' + name2);
+	console.log('Hello ' + name);
 });
