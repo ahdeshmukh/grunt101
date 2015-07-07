@@ -6,7 +6,7 @@ var grunt = require('grunt');
 
 //ex: grunt custom-invokes-multiple
 grunt.registerTask('custom-invokes-multiple', 'Custom task which invokes multiple other tasks', 
-					['multiple-task1', 'multiple-task2', 'multiple-task3']
+					['multiple-task1', 'multiple-task2', 'multiple-task3:Amit']
 				);
 
 grunt.registerTask('multiple-task1', 'Multiple task 1', function(){
