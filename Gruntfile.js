@@ -1,5 +1,5 @@
 /*
-one custom task invokes multiple other custom tasks. one of those multiple task accepts argument
+one custom task invokes multiple other custom tasks. one of those multiple task accepts argument. in this case the argument for multiple-task3 is hardcoded
 */
 
 var grunt = require('grunt');
