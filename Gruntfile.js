@@ -4,7 +4,7 @@ one custom task invokes multiple other custom tasks. one of those multiple task 
 
 var grunt = require('grunt');
 
-//ex: grunt custom-invokes-multiple
+//ex: grunt custom-invokes-multiple or grunt custom-invokes-multiple:Amit
 grunt.registerTask('custom-invokes-multiple', 'Custom task which invokes multiple other tasks', function(name) {
 						grunt.task.run('multiple-task1');
 						grunt.task.run('multiple-task2');
