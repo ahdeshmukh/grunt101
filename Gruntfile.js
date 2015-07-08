@@ -1,30 +1,16 @@
-/*
-one custom task invokes multiple other custom tasks. one of those multiple task accepts argument. in this case the argument for multiple-task3 is passed dynamically from the parent custom-invokes-multiple task
-*/
+/*multitask example. multitask is one which is further broken down into smaller tasks. all the small tasks are a part of the parent task*/
 
 var grunt = require('grunt');
 
-//ex: grunt custom-invokes-multiple or grunt custom-invokes-multiple:Amit
-grunt.registerTask('custom-invokes-multiple', 'Custom task which invokes multiple other tasks', function(name) {
-						grunt.task.run('multiple-task1');
-						grunt.task.run('multiple-task2');
-						if(name) {
-							grunt.task.run('multiple-task3:' + name);
-						}
-					}
-				);
+//ex: grunt multiTask will run task1, task2 and task3. while grunt multiTask:task2 will run only task2
+grunt.initConfig({
+    multiTask: {
+		task1: ['index.html', 'src/styles.css', 2],
+		task2: 'hello task2',
+		task3: 'hello task3'
+    }
+  });
 
-grunt.registerTask('multiple-task1', 'Multiple task 1', function(){
-	console.log('Running multipe task 1');
-});
-
-grunt.registerTask('multiple-task2', 'Multiple task 2', function(){
-	console.log('Running multipe task 2');
-});
-
-grunt.registerTask('multiple-task3', 'Multiple task 3', function(name){
-	if(!name || !name.length) {
-		grunt.warn('You need to provide a name');
-	}
-	console.log('Hello ' + name);
+grunt.registerMultiTask('multiTask', 'print targets', function() {
+	grunt.log.writeln(this.target + ': ' + this.data);
 });
