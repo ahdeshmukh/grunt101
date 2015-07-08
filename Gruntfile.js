@@ -1,16 +1,35 @@
-/*multitask example. multitask is one which is further broken down into smaller tasks. all the small tasks are a part of the parent task*/
+// our wrapper function (required by grunt and its plugins)
+// all configuration goes inside this function
+module.exports = function(grunt) {
 
-var grunt = require('grunt');
+	grunt.initConfig({
 
-//ex: grunt multiTask will run task1, task2 and task3. while grunt multiTask:task2 will run only task2
-grunt.initConfig({
-    multiTask: {
-		task1: ['index.html', 'src/styles.css', 2],
-		task2: 'hello task2',
-		task3: 'hello task3'
-    }
-  });
+		// get the configuration info from package.json ----------------------------
+		// this way we can use things like name and version (pkg.name)
+		pkg: grunt.file.readJSON('package.json'),
 
-grunt.registerMultiTask('multiTask', 'print targets', function() {
-	grunt.log.writeln(this.target + ': ' + this.data);
-});
+		// all of our configuration will go here
+		
+		// configure jshint to validate js files -----------------------------------
+		jshint: {
+			options: {
+				jshintrc: '.jshintrc',
+				reporter: require('jshint-stylish') // use jshint-stylish to make our errors look and read good
+			},
+
+			// when this task is run, lint the Gruntfile and all js files in src
+			build: ['src/**/*.js']
+		}
+
+	});
+
+	
+	// we can only load these if they are in our package.json
+	// make sure you have run npm install so our app can find these
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+
+};
