@@ -10,15 +10,15 @@ module.exports = function(grunt) {
 
 		// all of our configuration will go here
 		
-		// configure jshint to validate js files -----------------------------------
-		jshint: {
+		uglify: {
 			options: {
-				jshintrc: '.jshintrc',
-				reporter: require('jshint-stylish') // use jshint-stylish to make our errors look and read good
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
 			},
-
-			// when this task is run, lint the Gruntfile and all js files in src
-			build: ['src/**/*.js']
+			build: {
+				files: {
+					'dist/js/all.min.js': 'src/**/*.js'
+				}
+			}
 		}
 
 	});
