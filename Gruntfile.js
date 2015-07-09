@@ -1,5 +1,7 @@
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
+
+//ex: grunt less-minify
 module.exports = function(grunt) {
 
 	grunt.initConfig({
@@ -13,12 +15,27 @@ module.exports = function(grunt) {
 		less: {
 			build: {
 				files: {
-					'dist/css/all.min.css': 'src/**/*.less'
+					'dist/css/style.css': 'src/**/*.less'
+				}
+			}
+		},
+		
+		cssmin: {
+			options: {
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+			},
+			build: {
+				files: {
+					'dist/css/style.min.css': 'dist/css/style.css'
 				}
 			}
 		}
 
 	});
+	
+	grunt.registerTask('less-minify', 'Converts less files into single css file and minify that file later', 
+					['less', 'cssmin']
+				);
 
 	
 	// we can only load these if they are in our package.json
