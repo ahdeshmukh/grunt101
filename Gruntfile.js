@@ -10,13 +10,10 @@ module.exports = function(grunt) {
 
 		// all of our configuration will go here
 		
-		uglify: {
-			options: {
-				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
-			},
+		less: {
 			build: {
 				files: {
-					'dist/js/all.min.js': 'src/**/*.js'
+					'dist/css/all.min.css': 'src/**/*.less'
 				}
 			}
 		}
