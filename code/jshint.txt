@@ -1,5 +1,8 @@
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
+
+//ex: grunt jshint
+
 module.exports = function(grunt) {
 
 	grunt.initConfig({
