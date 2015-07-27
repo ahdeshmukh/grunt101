@@ -22,6 +22,7 @@ module.exports = function(grunt) {
 
 			// when this task is run, lint the Gruntfile and all js files in src
 			build: ['src/**/*.js']
+			//build: ['src/**/*.js', '!src/**/filename.js'] to ignore any particular file
 		}
 
 	});

@@ -12,11 +12,12 @@ module.exports = function(grunt) {
 		
 		uglify: {
 			options: {
-				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd H:i:s") %> \n*/\n'
 			},
 			build: {
 				files: {
 					'dist/js/all.min.js': 'src/**/*.js'
+					//'dist/js/all.min.js': ['src/**/*.js', '!src/**/filename.js'] to ignore any particular file
 				}
 			}
 		}
