@@ -1,9 +1,9 @@
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
 
-//less_minify.txt
+//min_css_js.txt
 
-//ex: grunt less-minify
+//ex: grunt min-css-js
 module.exports = function(grunt) {
 
 	grunt.initConfig({
@@ -31,12 +31,23 @@ module.exports = function(grunt) {
 					'dist/css/style.min.css': 'dist/css/style.css'
 				}
 			}
+		},
+		
+		uglify: {
+			options: {
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
+			},
+			build: {
+				files: {
+					'dist/js/all.min.js': 'src/**/*.js'
+				}
+			}
 		}
 
 	});
 	
-	grunt.registerTask('less-minify', 'Converts less files into single css file and minify that file later', 
-					['less', 'cssmin']
+	grunt.registerTask('min-css-js', 'convert less files to single css file and minify. convert js files to single js file and minify', 
+					['less', 'cssmin', 'uglify']
 				);
 
 	
