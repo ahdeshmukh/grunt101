@@ -42,14 +42,31 @@ module.exports = function(grunt) {
 					'dist/js/all.min.js': 'src/**/*.js'
 				}
 			}
+		},
+		
+		jshint: {
+			options: {
+				jshintrc: '.jshintrc',
+				reporter: require('jshint-stylish') // use jshint-stylish to make our errors look and read good
+			},
+			build: ['src/**/*.js']
+		},
+		
+		watch: {
+			//eatch changes to /js files. run jshint and uglify
+			scripts: { 
+		    files: 'src/**/*.js', 
+		    tasks: ['jshint', 'uglify'] 
+		  },
+		  
+		  //watch changes to .less files. run less and cssmin tasks
+		  styles: { 
+		    files: ['src/**/*.less'], 
+		    tasks: ['less', 'cssmin']
+		  },
 		}
 
 	});
-	
-	grunt.registerTask('min-css-js', 'convert less files to single css file and minify. convert js files to single js file and minify', 
-					['less', 'cssmin', 'uglify']
-				);
-
 	
 	// we can only load these if they are in our package.json
 	// make sure you have run npm install so our app can find these
