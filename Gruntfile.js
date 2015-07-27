@@ -1,6 +1,8 @@
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
 
+//less_minify.txt
+
 //ex: grunt less-minify
 module.exports = function(grunt) {
 
@@ -13,6 +15,9 @@ module.exports = function(grunt) {
 		// all of our configuration will go here
 		
 		less: {
+			options: {
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
+			},
 			build: {
 				files: {
 					'dist/css/style.css': 'src/**/*.less'
@@ -21,9 +26,6 @@ module.exports = function(grunt) {
 		},
 		
 		cssmin: {
-			options: {
-				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
-			},
 			build: {
 				files: {
 					'dist/css/style.min.css': 'dist/css/style.css'
