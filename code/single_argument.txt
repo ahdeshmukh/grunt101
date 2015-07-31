@@ -1,8 +1,8 @@
-var grunt = require('grunt');
-
-
 
 //ex: grunt hello-name:Amit
+
+var grunt = require('grunt');
+
 grunt.registerTask('hello-name', 'say hello to name passed through command line', function(name){
 	if(!name || !name.length) {
 		grunt.warn('You need to provide a name');

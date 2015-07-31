@@ -1,5 +1,9 @@
-// our wrapper function (required by grunt and its plugins)
-// all configuration goes inside this function
+//uglify.txt
+
+/*
+combines all js files in src folders and its subfolders into a single minifed js file
+*/
+
 module.exports = function(grunt) {
 
 	grunt.initConfig({

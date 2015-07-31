@@ -1,4 +1,9 @@
-/*multitask example. multitask is one which is further broken down into smaller tasks. all the small tasks are a part of the parent task*/
+//multi_task.txt
+
+/*
+multitask example. multitask is one which is further broken down into smaller tasks. 
+All the small tasks are a part of the parent task
+*/
 
 var grunt = require('grunt');
 

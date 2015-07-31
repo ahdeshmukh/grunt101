@@ -1,9 +1,12 @@
-// our wrapper function (required by grunt and its plugins)
-// all configuration goes inside this function
-
 //min_css_js.txt
 
+/*
+Convert all .less files into single css file. minify the new ly formed css file
+Convert all js files into single minified js file
+*/
+
 //ex: grunt min-css-js
+
 module.exports = function(grunt) {
 
 	grunt.initConfig({

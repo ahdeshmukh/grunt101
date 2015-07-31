@@ -1,10 +1,13 @@
+//custom_invokes_multiple_hardcoded_argument.txt
+
 /*
 one custom task invokes multiple other custom tasks. one of those multiple task accepts argument. in this case the argument for multiple-task3 is hardcoded
 */
 
+//ex: grunt custom-invokes-multiple
+
 var grunt = require('grunt');
 
-//ex: grunt custom-invokes-multiple
 grunt.registerTask('custom-invokes-multiple', 'Custom task which invokes multiple other tasks', 
 					['multiple-task1', 'multiple-task2', 'multiple-task3:Amit']
 				);

@@ -1,3 +1,11 @@
+//first_custom.txt
+
+/*
+first custom task
+*/
+
+//ex: grunt first-custom-task
+
 var grunt = require('grunt');
 
 grunt.registerTask('first-custom-task', 'First Custom Task', function(){
