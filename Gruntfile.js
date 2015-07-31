@@ -1,9 +1,11 @@
-// our wrapper function (required by grunt and its plugins)
-// all configuration goes inside this function
+//watch.txt
 
-//min_css_js.txt
+/*
+watches for changes to js and less files. if there are changes, it creates updated minified version of css and js files
+*/
 
-//ex: grunt min-css-js
+//ex: grunt watch
+
 module.exports = function(grunt) {
 
 	grunt.initConfig({
