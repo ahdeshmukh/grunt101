@@ -1,0 +1,1 @@
+Just a folder created for the copy tutorial about copying files, and folders and subdirectories.
