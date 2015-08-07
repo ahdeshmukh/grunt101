@@ -1,10 +1,10 @@
-//watch.txt
+//copy.txt
 
 /*
-watches for changes to js and less files. if there are changes, it creates updated minified version of css and js files
+copies index.html file to dist 
 */
 
-//ex: grunt watch
+//ex: grunt copy
 
 module.exports = function(grunt) {
 
@@ -16,56 +16,25 @@ module.exports = function(grunt) {
 
 		// all of our configuration will go here
 		
-		less: {
-			options: {
-				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
-			},
-			build: {
-				files: {
-					'dist/css/style.css': 'src/**/*.less'
-				}
+		
+		/*
+		 * copies index.html and all folders that start with "copy-", along with their subdirectories into dist folder
+		 * copy does not delete files from copy-* folders inside dist, even if they are deleted from the original folder 
+		 * */
+		
+		
+		//expand: true
+		/* if a folder already exists in the dest, and if we issue grunt copy command, grunt copies new files that may have been added to 
+			to the original folder to corresponding folder in the dest. if we set expand: false, and add a new file to src folder and issue
+			grunt copy, it will not copy the new file into the corresponding folder in dest
+		*/
+		
+		copy: {
+			main: {
+				files: [
+				  {expand: true, src: ['index.html', 'copy-*/**'], dest: 'dist/'}
+				]
 			}
-		},
-		
-		cssmin: {
-			build: {
-				files: {
-					'dist/css/style.min.css': 'dist/css/style.css'
-				}
-			}
-		},
-		
-		uglify: {
-			options: {
-				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
-			},
-			build: {
-				files: {
-					'dist/js/all.min.js': 'src/**/*.js'
-				}
-			}
-		},
-		
-		jshint: {
-			options: {
-				jshintrc: '.jshintrc',
-				reporter: require('jshint-stylish') // use jshint-stylish to make our errors look and read good
-			},
-			build: ['src/**/*.js']
-		},
-		
-		watch: {
-			//eatch changes to /js files. run jshint and uglify
-			scripts: { 
-		    files: 'src/**/*.js', 
-		    tasks: ['jshint', 'uglify'] 
-		  },
-		  
-		  //watch changes to .less files. run less and cssmin tasks
-		  styles: { 
-		    files: ['src/**/*.less'], 
-		    tasks: ['less', 'cssmin']
-		  },
 		}
 
 	});
@@ -77,5 +46,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 };
