@@ -1,7 +1,8 @@
 //copy.txt
 
 /*
-copies index.html file to dist 
+https://github.com/gruntjs/grunt-contrib-copy
+copies index.html and other folders and sub-directories to dist 
 */
 
 //ex: grunt copy
