@@ -1,10 +1,11 @@
-//copy.txt
+//sync.txt
 
 /*
-copies index.html file to dist 
+https://www.npmjs.com/package/grunt-sync
+after copying files and folders to dest, run sync to remove deleted files
 */
 
-//ex: grunt copy
+//ex: grunt sync
 
 module.exports = function(grunt) {
 
@@ -14,26 +15,16 @@ module.exports = function(grunt) {
 		// this way we can use things like name and version (pkg.name)
 		pkg: grunt.file.readJSON('package.json'),
 
-		// all of our configuration will go here
-		
-		
-		/*
-		 * copies index.html and all folders that start with "copy-", along with their subdirectories into dist folder
-		 * copy does not delete files from copy-* folders inside dist, even if they are deleted from the original folder 
-		 * */
-		
-		
-		//expand: true
-		/* if a folder already exists in the dest, and if we issue grunt copy command, grunt copies new files that may have been added to 
-			to the original folder to corresponding folder in the dest. if we set expand: false, and add a new file to src folder and issue
-			grunt copy, it will not copy the new file into the corresponding folder in dest
-		*/
-		
-		copy: {
+		sync: {
 			main: {
 				files: [
-				  {expand: true, src: ['index.html', 'copy-*/**'], dest: 'dist/'}
-				]
+				  {src: ['index.html', 'copy-*/**'], dest: 'dist/'}
+				],
+				verbose: true,
+				//pretend: true, //dry run, don't do actual operations. default false
+				failOnError: true, //fail if copying is not possible. default false
+				updateAndDelete: true, //remove files from folder that are not found in src,
+				ignoreInDest: ['js/**', 'css/**'], // do not remove files from js and css folders
 			}
 		}
 
@@ -47,5 +38,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-sync');
 
 };
