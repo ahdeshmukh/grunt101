@@ -61,6 +61,20 @@ module.exports = function(grunt) {
 				updateAndDelete: true,
 				ignoreInDest: ['js/**', 'css/**']
 			}
+		},
+		
+		processhtml: {
+			dist: {
+	      options: {
+	        process: true,
+	        data: {
+	          message: 'This is production distribution - Amit build'
+	        }
+	      },
+	      files: {
+	        'dist/index.html': ['index.html']
+	      }
+	    }
 		}
 
 	});
@@ -76,5 +90,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-sync');
+	grunt.loadNpmTasks('grunt-processhtml');
 
 };
