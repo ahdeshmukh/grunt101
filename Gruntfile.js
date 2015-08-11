@@ -1,19 +1,55 @@
-//sync.txt
+//amit-build.txt
 
 /*
-https://www.npmjs.com/package/grunt-sync
-after copying files and folders to dest, run sync to remove deleted files
+Build task. minify, uglify, copy, sync
 */
 
-//ex: grunt sync
+//ex: grunt amit-build
 
 module.exports = function(grunt) {
 
 	grunt.initConfig({
 
-		// get the configuration info from package.json ----------------------------
-		// this way we can use things like name and version (pkg.name)
 		pkg: grunt.file.readJSON('package.json'),
+		
+		less: {
+			options: {
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
+			},
+			build: {
+				files: {
+					'dist/css/style.css': 'src/**/*.less'
+				}
+			}
+		},
+		
+		cssmin: {
+			build: {
+				files: {
+					'dist/css/style.min.css': 'dist/css/style.css'
+				}
+			}
+		},
+		
+		uglify: {
+			options: {
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
+			},
+			build: {
+				files: {
+					'dist/js/all.min.js': 'src/**/*.js'
+					//'dist/js/all.min.js': ['src/**/*.js', '!src/**/filename.js'] to ignore any particular file
+				}
+			}
+		},
+		
+		copy: {
+			main: {
+				files: [
+				  {expand: true, src: ['index.html', 'copy-*/**'], dest: 'dist/'}
+				]
+			}
+		},
 
 		sync: {
 			main: {
@@ -21,14 +57,15 @@ module.exports = function(grunt) {
 				  {src: ['index.html', 'copy-*/**'], dest: 'dist/'}
 				],
 				verbose: true,
-				//pretend: true, //dry run, don't do actual operations. default false
-				failOnError: true, //fail if copying is not possible. default false
-				updateAndDelete: true, //remove files from folder that are not found in src,
-				ignoreInDest: ['js/**', 'css/**'], // do not remove files from js and css folders
+				failOnError: true,
+				updateAndDelete: true,
+				ignoreInDest: ['js/**', 'css/**']
 			}
 		}
 
 	});
+	
+	grunt.registerTask('amit-build', 'Build task', ['less', 'cssmin', 'uglify', 'copy', 'sync']);
 	
 	// we can only load these if they are in our package.json
 	// make sure you have run npm install so our app can find these
