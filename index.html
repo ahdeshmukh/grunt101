@@ -6,20 +6,25 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 	
-		<link rel="stylesheet" type="text/css" href="dist/css/style.min.css">
-		<!--<link rel="stylesheet" type="text/css" href="dist/css/red.css">
-		<link rel="stylesheet" type="text/css" href="dist/css/blue.css">-->
+		<!-- build:css css/style.min.css -->
+		<link rel="stylesheet" type="text/css" href="dist/css/red.css">
+		<link rel="stylesheet" type="text/css" href="dist/css/blue.css">
+		<!-- /build -->
 	
   </head>
   <body>
+  
+  	<!-- build:template
+			<!--<%= message %>-->
+		<!-- /build -->
+  
 		<h1>Grunt 101</h1>
 		<div class="square-div red"></div>
 		<div class="square-div blue"></div>
 		
-		<!-- js files -->
-		<!--<script src="src/js/1.js"></script>
-		<script src="src/js/2.js"></script>-->
-		<script src="dist/js/all.min.js"></script>
-		<!-- js files -->
+		<!-- build:js js/all.min.js -->
+		<script src="src/js/1.js"></script>
+		<script src="src/js/2.js"></script>
+		<!-- /build -->
   </body>
 </html>
