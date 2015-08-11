@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 		less: {
 			build: {
 				files: {
-					'dist/css/all.min.css': 'src/**/*.less'
+					'dist/css/all.css': 'src/**/*.less'
 					//'dist/css/style.css': ['src/**/*.less', '!src/**/filename.less'] // to ignore any particular file
 				}
 			}
