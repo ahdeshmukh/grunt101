@@ -1,7 +1,7 @@
 //amit-build.txt
 
 /*
-Build task. minify, uglify, copy, sync
+Build task. minify, uglify, copy, sync, processhtml
 */
 
 //ex: grunt amit-build
