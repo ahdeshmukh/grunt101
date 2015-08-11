@@ -17,16 +17,22 @@ module.exports = function(grunt) {
 				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
 			},
 			build: {
-				files: {
-					'dist/css/style.css': 'src/**/*.less'
-				}
+				files: [
+					{
+						expand: true,
+						cwd: 'src/less',
+						src: ['*.less'],
+						dest: 'src/css/',
+						ext: '.css'
+					}
+				]
 			}
 		},
 		
 		cssmin: {
 			build: {
 				files: {
-					'dist/css/style.min.css': 'dist/css/style.css'
+					'dist/css/style.min.css': 'src/css/*.css'
 				}
 			}
 		},
@@ -79,7 +85,7 @@ module.exports = function(grunt) {
 
 	});
 	
-	grunt.registerTask('amit-build', 'Build task', ['less', 'cssmin', 'uglify', 'copy', 'sync']);
+	grunt.registerTask('amit-build', 'Build task', ['less', 'cssmin', 'uglify', 'copy', 'sync', 'processhtml']);
 	
 	// we can only load these if they are in our package.json
 	// make sure you have run npm install so our app can find these
