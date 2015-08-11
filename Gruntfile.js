@@ -1,85 +1,45 @@
-//amit-build.txt
+//less.txt
 
 /*
-Build task. minify, uglify, copy, sync
+grunt less:correspondingCss css file from corresponding less file. Example css/red.css will be created from less/red.less
+grunt less:singleCss creates single css file from all the .less files 
 */
 
-//ex: grunt amit-build
+
+//ex: grunt less or grunt less:correspondingCss or grunt less:singleCss
 
 module.exports = function(grunt) {
 
 	grunt.initConfig({
 
+		// get the configuration info from package.json ----------------------------
+		// this way we can use things like name and version (pkg.name)
 		pkg: grunt.file.readJSON('package.json'),
+
+		// all of our configuration will go here
 		
 		less: {
-			options: {
-				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
-			},
-			build: {
-				files: {
-					'dist/css/style.css': 'src/**/*.less'
-				}
-			}
-		},
-		
-		cssmin: {
-			build: {
-				files: {
-					'dist/css/style.min.css': 'dist/css/style.css'
-				}
-			}
-		},
-		
-		uglify: {
-			options: {
-				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %> \n*/\n'
-			},
-			build: {
-				files: {
-					'dist/js/all.min.js': 'src/**/*.js'
-					//'dist/js/all.min.js': ['src/**/*.js', '!src/**/filename.js'] to ignore any particular file
-				}
-			}
-		},
-		
-		copy: {
-			main: {
+			correspondingCss: {
 				files: [
-				  {expand: true, src: ['index.html', 'copy-*/**'], dest: 'dist/'}
+					{
+						expand: true,
+						cwd: 'src/less',
+						src: ['*.less'],
+						dest: 'src/css/',
+						ext: '.css'
+					}
 				]
+			},
+			singleCss: {
+				files: {
+					'src/css/all.css': 'src/**/*.less'
+					//'dist/css/style.css': ['src/**/*.less', '!src/**/filename.less'] // to ignore any particular file
+				}
 			}
-		},
-
-		sync: {
-			main: {
-				files: [
-				  {src: ['index.html', 'copy-*/**'], dest: 'dist/'}
-				],
-				verbose: true,
-				failOnError: true,
-				updateAndDelete: true,
-				ignoreInDest: ['js/**', 'css/**']
-			}
-		},
-		
-		processhtml: {
-			dist: {
-	      options: {
-	        process: true,
-	        data: {
-	          message: 'This is production distribution - Amit build'
-	        }
-	      },
-	      files: {
-	        'dist/index.html': ['index.html']
-	      }
-	    }
 		}
 
 	});
-	
-	grunt.registerTask('amit-build', 'Build task', ['less', 'cssmin', 'uglify', 'copy', 'sync', 'processhtml']);
+
 	
 	// we can only load these if they are in our package.json
 	// make sure you have run npm install so our app can find these
@@ -88,8 +48,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-sync');
-	grunt.loadNpmTasks('grunt-processhtml');
 
 };

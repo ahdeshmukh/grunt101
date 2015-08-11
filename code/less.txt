@@ -1,11 +1,12 @@
 //less.txt
 
 /*
-Converts all .less files into a single css file
+grunt less:correspondingCss css file from corresponding less file. Example css/red.css will be created from less/red.less
+grunt less:singleCss creates single css file from all the .less files 
 */
 
 
-//ex: grunt less
+//ex: grunt less or grunt less:correspondingCss or grunt less:singleCss
 
 module.exports = function(grunt) {
 
@@ -18,9 +19,20 @@ module.exports = function(grunt) {
 		// all of our configuration will go here
 		
 		less: {
-			build: {
+			correspondingCss: {
+				files: [
+					{
+						expand: true,
+						cwd: 'src/less',
+						src: ['*.less'],
+						dest: 'src/css/',
+						ext: '.css'
+					}
+				]
+			},
+			singleCss: {
 				files: {
-					'dist/css/all.css': 'src/**/*.less'
+					'src/css/all.css': 'src/**/*.less'
 					//'dist/css/style.css': ['src/**/*.less', '!src/**/filename.less'] // to ignore any particular file
 				}
 			}
