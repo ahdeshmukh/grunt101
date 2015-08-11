@@ -1,0 +1,49 @@
+//processhtml.txt
+
+/*
+modify the index.html to include minified css and uglified js files
+
+enclose the css files in src index.html using special html comments like <!-- build:css css/style.min.css --> and <!-- /build -->
+so grunt processhtml will update index.html file in dist folder to include css/style.min.css file
+
+enclose the css files in src index.html using special html comments like <!-- build:js js/all.min.js --> and <!-- /build -->
+so grunt processhtml will update index.html file in dist folder to include js/all.min.js file
+
+*/
+
+//ex: grunt processhtml
+
+module.exports = function(grunt) {
+
+	grunt.initConfig({
+
+		pkg: grunt.file.readJSON('package.json'),
+		
+		processhtml: {
+			dist: {
+	      options: {
+	        process: true,
+	        data: {
+	          message: 'This is production distribution'
+	        }
+	      },
+	      files: {
+	        'dist/index.html': ['index.html']
+	      }
+	    }
+		}
+
+	});
+	
+	// we can only load these if they are in our package.json
+	// make sure you have run npm install so our app can find these
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-sync');
+	grunt.loadNpmTasks('grunt-processhtml');
+
+};
