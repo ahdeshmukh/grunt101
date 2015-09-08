@@ -6,7 +6,7 @@ modify the index.html to include minified css and uglified js files
 enclose the css files in src index.html using special html comments like <!-- build:css css/style.min.css --> and <!-- /build -->
 so grunt processhtml will update index.html file in dist folder to include css/style.min.css file
 
-enclose the css files in src index.html using special html comments like <!-- build:js js/all.min.js --> and <!-- /build -->
+enclose the js files in src index.html using special html comments like <!-- build:js js/all.min.js --> and <!-- /build -->
 so grunt processhtml will update index.html file in dist folder to include js/all.min.js file
 
 */
