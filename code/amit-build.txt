@@ -81,11 +81,18 @@ module.exports = function(grunt) {
 	        'dist/index.html': ['index.html']
 	      }
 	    }
+		},
+		
+		//notice the single quotes around json-minify. It is because grunt throws an error if there is a - in the task name
+		'json-minify': {
+			build: {
+				files: 'json/**/*.json'
+			}
 		}
 
 	});
 	
-	grunt.registerTask('amit-build', 'Build task', ['less', 'cssmin', 'uglify', 'copy', 'sync', 'processhtml']);
+	grunt.registerTask('amit-build', 'Build task', ['less', 'cssmin', 'uglify', 'copy', 'sync', 'processhtml', 'json-minify']);
 	
 	// we can only load these if they are in our package.json
 	// make sure you have run npm install so our app can find these
@@ -97,5 +104,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-sync');
 	grunt.loadNpmTasks('grunt-processhtml');
+	grunt.loadNpmTasks('grunt-json-minify');
 
 };
