@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 		copy: {
 			main: {
 				files: [
-				  {expand: true, src: ['index.html', 'copy-*/**'], dest: 'dist/'}
+				  {expand: true, src: ['index.html', 'copy-*/**', 'json/**'], dest: 'dist/'}
 				]
 			}
 		},
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 		sync: {
 			main: {
 				files: [
-				  {src: ['index.html', 'copy-*/**'], dest: 'dist/'}
+				  {src: ['index.html', 'copy-*/**', 'json/**'], dest: 'dist/'}
 				],
 				verbose: true,
 				failOnError: true,
@@ -86,7 +86,7 @@ module.exports = function(grunt) {
 		//notice the single quotes around json-minify. It is because grunt throws an error if there is a - in the task name
 		'json-minify': {
 			build: {
-				files: 'json/**/*.json'
+				files: 'dist/json/**/*.json'
 			}
 		}
 
