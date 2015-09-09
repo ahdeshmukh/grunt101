@@ -18,6 +18,7 @@
     "grunt-contrib-watch": "latest",
     "grunt-sync": "latest",
     "grunt-processhtml": "latest",
-    "jshint-stylish": "latest"
+    "jshint-stylish": "latest",
+    "grunt-json-minify": "latest"
   }
 }
